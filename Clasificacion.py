@@ -140,9 +140,9 @@ plt.savefig("Resultado_optimizado.png", dpi=300, bbox_inches='tight')
 plt.show()
 
 # Mostrar las 5 mejores combinaciones
-print("\nTop 5 mejores combinaciones:")
-resultados_ordenados = sorted(resultados, key=lambda x: x[1], reverse=True)[:5]
-for i, (params, score) in enumerate(resultados_ordenados, 1):
-    print(f"{i}. Accuracy: {score:.4f} - Parámetros: {params}")
-
-print("\nProceso finalizado correctamente!")
+# print("\nTop 5 mejores combinaciones:")
+# resultados_ordenados = sorted(resultados, key=lambda x: x[1], reverse=True)[:5]
+# for i, (params, score) in enumerate(resultados_ordenados, 1):
+#     print(f"{i}. Accuracy: {score:.4f} - Parámetros: {params}")
+#
+# print("\nProceso finalizado correctamente!")
