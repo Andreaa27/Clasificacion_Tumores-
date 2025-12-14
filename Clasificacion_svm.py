@@ -103,21 +103,21 @@ if __name__ == '__main__':
     # Inicio de toma de tiempo RF
     inicio_rf = time.time()
     
-    # Búsqueda en paralelo
+    Búsqueda en paralelo
     print("Ejecutando búsqueda paralela RF...")
     with Pool(processes=8) as pool:
         resultados_rf = list(tqdm(pool.imap(evaluar_rf, tareas_rf), total=len(tareas_rf)))
-        
+
     fin_rf = time.time()
-    
+
     # Encontrar el mejor resultado RF
     mejor_params_rf, mejor_score_rf = max(resultados_rf, key=lambda x: x[1])
-    
+
     print(f"\nBúsqueda de RF completa")
     print(f"Tiempo total: {round(fin_rf - inicio_rf, 2)} segundos")
     print(f"Mejor accuracy val: {mejor_score_rf:.4f}")
     print(f"Mejores parámetros: {mejor_params_rf}")
-    
+
     # Entrenar modelo final RF
     print("\nEntrenando modelo final RF...")
     rf_final = RandomForestClassifier(
@@ -126,17 +126,17 @@ if __name__ == '__main__':
         n_jobs=-1
     )
     rf_final.fit(X_train, y_train)
-    
+
     # Evaluación en test set RF
     print("Evaluando RF en test set...")
     y_pred_test_rf = rf_final.predict(X_test)
     acc_test_rf = accuracy_score(y_test, y_pred_test_rf)
     print(f"Accuracy en prueba (RF): {acc_test_rf:.4f}")
-    
+
     # Reporte RF
     print("\nReporte de Clasificación (RF):")
     print(classification_report(y_test, y_pred_test_rf, target_names=clases))
-    
+
     # Matriz RF
     plt.figure(figsize=(8, 6))
     sns.heatmap(confusion_matrix(y_test, y_pred_test_rf), annot=True, fmt='d', cmap='Greens',
@@ -183,6 +183,11 @@ if __name__ == '__main__':
     fin_svm = time.time()
 
     mejor_params_svm, mejor_score_svm = max(resultados_svm, key=lambda x: x[1])
+
+    print("\nMejores hiperparámetros encontrados para SVM:")
+    for k, v in mejor_params_svm.items():
+        print(f"  {k}: {v}")
+
     print(f"\nBÚSQUEDA COMPLETADA (SVM)")
     print(f"Tiempo total: {round(fin_svm - inicio_svm, 2)}s")
     print(f"Mejor Accuracy Val: {mejor_score_svm:.4f}")
