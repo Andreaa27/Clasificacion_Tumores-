@@ -9,8 +9,8 @@ from tensorflow.keras.applications.resnet50 import preprocess_input
 import tensorflow as tf
 
 # Forzar CPU antes de inicializar TensorFlow
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-tf.config.set_visible_devices([], "GPU")
+gpus = tf.config.list_physical_devices("GPU")
+print("GPUs disponibles:", gpus)
 
 # Confirmar dispositivo
 print("Dispositivos visibles:", tf.config.list_physical_devices())
