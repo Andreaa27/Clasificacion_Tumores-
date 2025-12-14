@@ -8,7 +8,6 @@ from tensorflow.keras.applications import ResNet50
 from tensorflow.keras.applications.resnet50 import preprocess_input
 import tensorflow as tf
 
-# Forzar CPU antes de inicializar TensorFlow
 gpus = tf.config.list_physical_devices("GPU")
 print("GPUs disponibles:", gpus)
 
